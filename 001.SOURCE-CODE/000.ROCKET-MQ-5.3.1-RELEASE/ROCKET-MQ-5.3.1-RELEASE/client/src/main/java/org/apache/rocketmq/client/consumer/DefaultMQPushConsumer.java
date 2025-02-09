@@ -792,7 +792,7 @@ public class DefaultMQPushConsumer extends ClientConfig implements MQPushConsume
     }
 
     /**
-     * Subscribe a topic to consuming subscription.
+     * Subscribe a topic to consuming subscription.(订阅一个主题以进行消费订阅。)
      *
      * @param topic         topic to subscribe.
      * @param subExpression subscription expression.it only support or operation such as "tag1 || tag2 || tag3" <br>
