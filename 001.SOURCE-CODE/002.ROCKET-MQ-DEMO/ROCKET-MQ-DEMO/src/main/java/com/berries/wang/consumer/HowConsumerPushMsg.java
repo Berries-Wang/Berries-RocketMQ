@@ -24,6 +24,7 @@ public class HowConsumerPushMsg {
         defaultMQPushConsumer.subscribe("Test-Topic", "*");
 
         // 参考: org.apache.rocketmq.client.consumer.DefaultMQPushConsumer.setPullThresholdForTopic 代码注释
+        // 所以，RocketMQ Client 是一次性拉取多个消息到本地，当本地缓存的消息数量低于阈值，则继续拉取
         defaultMQPushConsumer.setPullThresholdForTopic(1000);
 
         // 注册回调函数处理消息
