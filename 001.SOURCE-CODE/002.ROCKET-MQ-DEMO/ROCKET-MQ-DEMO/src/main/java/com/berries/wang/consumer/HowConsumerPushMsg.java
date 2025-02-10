@@ -23,11 +23,15 @@ public class HowConsumerPushMsg {
         // 订阅一个主题以进行消费订阅: 参考: 001.SOURCE-CODE/000.ROCKET-MQ-5.3.1-RELEASE/ROCKET-MQ-5.3.1-RELEASE/client/src/main/java/org/apache/rocketmq/client/consumer/DefaultMQPushConsumer.java
         defaultMQPushConsumer.subscribe("Test-Topic", "*");
 
+        // 参考: org.apache.rocketmq.client.consumer.DefaultMQPushConsumer.setPullThresholdForTopic 代码注释
+        defaultMQPushConsumer.setPullThresholdForTopic(1000);
+
         // 注册回调函数处理消息
         defaultMQPushConsumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-                Optional.ofNullable(list).orElse(new LinkedList<>()).forEach(eleMsg -> {
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> messageExts,
+                ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+                Optional.ofNullable(messageExts).orElse(new LinkedList<>()).forEach(eleMsg -> {
                     System.out.println("收到消息: " + new String(eleMsg.getBody()));
                 });
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;

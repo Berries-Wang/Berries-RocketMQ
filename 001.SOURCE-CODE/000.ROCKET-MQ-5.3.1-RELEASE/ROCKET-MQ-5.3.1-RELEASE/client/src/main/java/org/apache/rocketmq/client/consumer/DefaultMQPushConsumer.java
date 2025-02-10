@@ -199,11 +199,18 @@ public class DefaultMQPushConsumer extends ClientConfig implements MQPushConsume
     /**
      * Flow control threshold on topic level, default value is -1(Unlimited)
      * <p>
-     * The value of {@code pullThresholdForQueue} will be overwritten and calculated based on
+     * The value of {@code pullThresholdForQueue} will be overwritten and calculated
+     * based on
      * {@code pullThresholdForTopic} if it isn't unlimited
      * <p>
-     * For example, if the value of pullThresholdForTopic is 1000 and 10 message queues are assigned to this consumer,
-     * then pullThresholdForQueue will be set to 100
+     * For example, if the value of pullThresholdForTopic is 1000 and 10 message
+     * queues are assigned to this consumer,
+     * then pullThresholdForQueue will be set to 100.(例如，如果 pullThresholdForTopic
+     * 的值为 1000，并且为该消费者分配了 10 个消息队列，则 pullThresholdForQueue 将设置为 100)
+     * 
+     * <p>
+     * 当消费者本地缓存的消息数量达到该阈值时，消费者将暂停从该主题拉取消息，直到本地缓存的消息数量低于该阈值。通过设置
+     * pullThresholdForTopic，可以防止消费者本地缓存过多的消息，从而避免内存溢出或消息处理过载。
      */
     private int pullThresholdForTopic = -1;
 
