@@ -190,7 +190,6 @@
         <module>remoting</module>
         <module>srvutil</module>
         <module>filter</module>
-        <module>test</module>
         <module>distribution</module>
         <module>openmessaging</module>
         <module>acl</module>

@@ -32,6 +32,7 @@ public class Producer {
     public static void main(String[] args) throws MQClientException, InterruptedException {
 
         DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP);
+        producer.setNamesrvAddr(DEFAULT_NAMESRVADDR);
 
         // Uncomment the following line while debugging, namesrvAddr should be set to your local address
         //producer.setNamesrvAddr(DEFAULT_NAMESRVADDR);

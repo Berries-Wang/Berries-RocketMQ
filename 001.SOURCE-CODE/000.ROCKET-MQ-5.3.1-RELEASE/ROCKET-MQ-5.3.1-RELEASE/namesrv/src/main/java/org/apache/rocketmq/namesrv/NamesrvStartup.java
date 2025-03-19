@@ -41,6 +41,9 @@ import org.apache.rocketmq.logging.org.slf4j.LoggerFactory;
 import org.apache.rocketmq.srvutil.ServerUtil;
 import org.apache.rocketmq.srvutil.ShutdownHookThread;
 
+/**
+ * 需要配置环境变量: ROCKETMQ_HOME= xxx/Berries-RocketMQ/001.SOURCE-CODE/000.ROCKET-MQ-5.3.1-RELEASE/ROCKET-MQ-5.3.1-RELEASE/debug-dir
+ */
 public class NamesrvStartup {
 
     private static final Logger log = LoggerFactory.getLogger(LoggerName.NAMESRV_LOGGER_NAME);

@@ -43,6 +43,14 @@ import org.apache.rocketmq.srvutil.ServerUtil;
 import org.apache.rocketmq.store.config.BrokerRole;
 import org.apache.rocketmq.store.config.MessageStoreConfig;
 
+/**
+ * 设置broker.conf  : 启动参数
+ * -c xxx/debug-dir/conf/broker.conf
+ * 环境变量:
+ *     ROCKETMQ_HOME=ROCKETMQ_HOME= xxx/Berries-RocketMQ/001.SOURCE-CODE/000.ROCKET-MQ-5.3.1-RELEASE/ROCKET-MQ-5.3.1-RELEASE/debug-dir
+ *     NAMESRV_ADDR=127.0.0.1:9876
+ *
+ */
 public class BrokerStartup {
 
     public static Logger log;

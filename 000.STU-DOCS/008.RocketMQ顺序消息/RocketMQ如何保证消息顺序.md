@@ -1,7 +1,12 @@
 # RocketMQ如何保证消息顺序
-> 先阅读:[顺序消息](./顺序消息%20_%20RocketMQ.pdf)
+> 先阅读:[顺序消息](./顺序消息%20_%20RocketMQ.pdf) & [解析 RocketMQ 业务消息--顺序消息](./rocketmq-learning.com_learning_rocketmq-order__spm=5176.29160081.0.0.34bb58c4BDdy0W.png)
 
 消息顺序包含: 生产顺序性 和 消费顺序性 
+
+无论对于发送还是消费，我们通过 MessageGroup 的方式将消息分组，即并发的基本单元是 MessageGroup，不同的 MessageGroup 可以并发的发送和消费，从而一定程度具备了可拓展性，支持多队列存储、水平拆分、并发消费，且不受影响。
+- 顺序发送: 保证同一MessageGroup的消息是顺序发送的（或串行发送）
+- 消费消息: 顺序消息，需要保证对于同一个 MessageGroup，同一时刻只有一个客户端在消费消息，并且在该条消息被确认消费完成之前（或者进入死信队列），消费者无法消费同一 MessageGroup 的下一条消息，否则消费的顺序性将得不到保证。
+
 
 ## 重要概念
 ### 1. 消息组（MessageGroup）
