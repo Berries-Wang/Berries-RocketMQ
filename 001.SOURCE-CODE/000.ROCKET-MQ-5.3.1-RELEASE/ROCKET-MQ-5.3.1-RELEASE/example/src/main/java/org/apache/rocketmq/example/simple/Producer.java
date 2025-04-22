@@ -16,6 +16,7 @@
  */
 package org.apache.rocketmq.example.simple;
 
+import io.netty.channel.DefaultChannelId;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -35,13 +36,13 @@ public class Producer {
         producer.setNamesrvAddr(DEFAULT_NAMESRVADDR);
 
         // Uncomment the following line while debugging, namesrvAddr should be set to your local address
-        //producer.setNamesrvAddr(DEFAULT_NAMESRVADDR);
-
+        // producer.setNamesrvAddr(DEFAULT_NAMESRVADDR);
+        DefaultChannelId.newInstance();
         producer.start();
-        for (int i = 0; i < 128; i++) {
+        for (int i = 0; i < 1; i++) {
             try {
-                Message msg = new Message(TOPIC, TAG, "OrderID188", "Hello world".getBytes(StandardCharsets.UTF_8));
-                SendResult sendResult = producer.send(msg);
+                Message msg = new Message(TOPIC, TAG, "OrderID188", (" Hello world_"+i).getBytes(StandardCharsets.UTF_8));
+                SendResult sendResult = producer.send(msg,Integer.MAX_VALUE);
                 System.out.printf("%s%n", sendResult);
             } catch (Exception e) {
                 e.printStackTrace();
