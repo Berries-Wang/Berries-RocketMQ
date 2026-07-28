@@ -42,7 +42,7 @@ public class Producer {
         producer.start();
         for (long i = 0; i < 9999999999L; i++) {
             try {
-                Message msg = new Message(TOPIC, TAG, "OrderID188", (" Hello world_"+i).getBytes(StandardCharsets.UTF_8));
+                Message msg = new Message(TOPIC, TAG, "OrderID188", (" Hello world_" + i).getBytes(StandardCharsets.UTF_8));
                 SendResult sendResult = producer.send(msg,Integer.MAX_VALUE);
                 System.out.printf("%s%n", sendResult);
 

@@ -440,7 +440,7 @@ public class ConsumeMessageConcurrentlyService implements ConsumeMessageService 
                 returnType = ConsumeReturnType.SUCCESS;
             }
 
-            System.out.format("----> 消费耗时:[%s]ms --> status: [%s]  --> returnType:[%s]\n", consumeRT, (null == status ? null : status.name()), returnType.name());
+            System.out.format("----> 消费耗时:[%s]ms --> status: [%s]  --> returnType:[%s]\n", consumeRT, null == status ? null : status.name(), returnType.name());
 
 
             if (ConsumeMessageConcurrentlyService.this.defaultMQPushConsumerImpl.hasHook()) {

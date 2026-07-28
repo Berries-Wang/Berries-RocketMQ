@@ -1,0 +1,30 @@
+{
+    // ========== JDK 配置 (macOS) ==========
+    // 其他平台请修改为本机 JDK 8 路径
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "/Users/wei/APP/002.OpenJDK8/zulu8.96.0.19-ca-jdk8.0.502-macosx_aarch64",
+            "default": true
+        }
+    ],
+    "java.home": "/Users/wei/APP/002.OpenJDK8/zulu8.96.0.19-ca-jdk8.0.502-macosx_aarch64",
+    "java.jdt.ls.java.home": "/Users/wei/APP/002.OpenJDK8/zulu8.96.0.19-ca-jdk8.0.502-macosx_aarch64",
+    "java.import.gradle.java.home": "/Users/wei/APP/002.OpenJDK8/zulu8.96.0.19-ca-jdk8.0.502-macosx_aarch64",
+    "java.import.maven.javaHome": "/Users/wei/APP/002.OpenJDK8/zulu8.96.0.19-ca-jdk8.0.502-macosx_aarch64",
+
+    // ========== 编辑器通用设置 ==========
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    },
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [120],
+    "files.encoding": "utf-8",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true
+}

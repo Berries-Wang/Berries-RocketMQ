@@ -17,7 +17,6 @@
 package org.apache.rocketmq.example.simple;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import io.netty.channel.DefaultChannelId;
 import org.apache.http.client.config.RequestConfig;
@@ -73,7 +72,7 @@ public class PushConsumer {
                     if (response.getStatusLine().getStatusCode() == 200) {
                         //请求体内容
                         String content = EntityUtils.toString(response.getEntity(), "UTF-8");
-                        System.out.println("响应内容: " + content);
+                        System.out.printf("响应内容: %s%n", content);
                     }
 
                 } catch (Exception e) {
