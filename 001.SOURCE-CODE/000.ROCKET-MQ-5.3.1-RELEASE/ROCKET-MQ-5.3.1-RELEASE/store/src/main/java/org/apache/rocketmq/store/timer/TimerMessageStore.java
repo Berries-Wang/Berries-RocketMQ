@@ -140,9 +140,16 @@ public class TimerMessageStore {
 
     private final int commitLogFileSize;
     private final int timerLogFileSize;
+    /**
+     *
+     */
     private final int timerRollWindowSlots;
     private final int slotsTotal;
 
+    /**
+     * 时间轮精度, 时间轮精度（毫秒） , 精度越高，延迟越精确，但 CPU 和内存开销也越大
+     * 默认 1000ms（秒级精度）
+     */
     protected final int precisionMs;
     protected final MessageStoreConfig storeConfig;
     protected TimerMetrics timerMetrics;
@@ -721,6 +728,9 @@ public class TimerMessageStore {
         return false;
     }
 
+    /**
+     *
+     */
     public boolean doEnqueue(long offsetPy, int sizePy, long delayedTime, MessageExt messageExt) {
         LOGGER.debug("Do enqueue [{}] [{}]", new Timestamp(delayedTime), messageExt);
         //copy the value first, avoid concurrent problem
