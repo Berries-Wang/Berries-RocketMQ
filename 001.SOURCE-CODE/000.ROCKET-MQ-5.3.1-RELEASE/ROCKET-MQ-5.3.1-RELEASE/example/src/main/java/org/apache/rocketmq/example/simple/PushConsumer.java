@@ -52,6 +52,11 @@ public class PushConsumer {
         consumer.setConsumeTimeout(30);
         consumer.setConsumeThreadMin(20);
         consumer.setConsumeThreadMax(20);
+        consumer.setConsumeConcurrentlyMaxSpan(2000);
+        consumer.setPullThresholdSizeForQueue(100);
+        consumer.setPullInterval(300);
+        consumer.setPullThresholdForTopic(1000);
+        consumer.setPullThresholdSizeForTopic(100);
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 
             @Override
