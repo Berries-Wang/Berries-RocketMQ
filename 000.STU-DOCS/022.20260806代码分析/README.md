@@ -1211,24 +1211,10 @@ if (e instanceof MQBrokerException && ((MQBrokerException) e).getResponseCode() 
 **Arthas（线上不改代码，推荐）：**
 
 ```bash
-# 1. 查看当前消费者实例绑定了哪些队列
-[arthas@pid]$ vmtool -x 2 --action getInstances \
-    --className org.apache.rocketmq.client.consumer.DefaultMQPushConsumer \
-    --express 'instances[0].getDefaultMQPushConsumerImpl()\
-        .getRebalanceImpl().getProcessQueueTable()\
-        .keySet().stream().map(mq -> mq.getBrokerName() + "-" + mq.getQueueId())\
-        .collect(java.util.stream.Collectors.joining(", "))'
-
-# 2. 查看每个队列的缓存消息数和大小（反映积压程度）
-[arthas@pid]$ vmtool -x 2 --action getInstances \
-    --className org.apache.rocketmq.client.consumer.DefaultMQPushConsumer \
-    --express 'instances[0].getDefaultMQPushConsumerImpl()\
-        .getRebalanceImpl().getProcessQueueTable()\
-        .entrySet().stream()\
-        .collect(java.util.stream.Collectors.toMap(\
-            e -> e.getKey().getBrokerName() + "-" + e.getKey().getQueueId(),\
-            e -> e.getValue().getMsgCount().get() + "条/" \
-                 + e.getValue().getMsgSize().get()/1024 + "KB"))'
+# 1. 查看每个队列的缓存消息数和大小（反映积压程度）
+vmtool -x 2 --action getInstances \
+  --className org.apache.rocketmq.client.consumer.DefaultMQPushConsumer \
+  --express 'instances[0].getDefaultMQPushConsumerImpl().getRebalanceImpl().getProcessQueueTable().entrySet().{ #this.getKey().getBrokerName() + "-" + #this.getKey().getQueueId() + "=" + #this.getValue().getMsgCount().get() + "/" + (#this.getValue().getMsgSize().get() / 1024) + "KB" }'
 ```
 
 > 如果某个队列的缓存消息数持续接近 `pullThresholdForQueue(1000)`，说明该队列消费速度跟不上拉取速度。
